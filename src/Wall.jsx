@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import './Wall.scss';
 import * as API from './api';
+import React, { Component } from 'react';
 
 class WallPost extends Component {
   render() {
     const { userId, title } = this.props.item;
 
     return (
-      <div>
+      <div className='wall-content-post'>
         <h3>UserId: user{userId}</h3>
         <span>{title}</span>
       </div>
@@ -17,6 +18,7 @@ class WallPost extends Component {
 export default class Wall extends Component {
   constructor() {
     super();
+
     this.state = {
       list: [],
     };
@@ -29,15 +31,15 @@ export default class Wall extends Component {
 
   render() {
     return (
-      <div>
+      <div className='wall'>
 
-        <div>
+        <header className='wall-header'>
           <button>Logout</button>
-          <div>
+          <div className='wall-header-search'>
             <i>asd</i>
             <input type='text' placeholder='Search' />
           </div>
-        </div>
+        </header>
 
         <div>
           <div>
