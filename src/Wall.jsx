@@ -8,8 +8,10 @@ class WallPost extends Component {
 
     return (
       <div className='wall-content-post'>
-        <h3>UserId: user{userId}</h3>
-        <span>{title}</span>
+        <div className='wall-content-post-inner'>
+          <h3>UserId: user{userId}</h3>
+          <span>{title}</span>
+        </div>
       </div>
     );
   }
@@ -26,7 +28,10 @@ export default class Wall extends Component {
 
   componentDidMount() {
     API.fetch_all()
-      .then(list => this.setState({ list }));
+      .then(list => {
+        console.log('co z ta lista:', list);
+        this.setState({ list });
+      });
   }
 
   render() {
@@ -34,18 +39,16 @@ export default class Wall extends Component {
       <div className='wall'>
 
         <header className='wall-header'>
-          <button>Logout</button>
+          <button type='click' className='wall-header-button-logout'>Logout</button>
           <div className='wall-header-search'>
             <i>asd</i>
             <input type='text' placeholder='Search' />
           </div>
         </header>
 
-        <div>
-          <div>
-            {this.state.list.map(item => <WallPost item={item} key={item.id}/>)}
-          </div>
-        </div>
+        <main className='wall-content'>
+          {this.state.list.map(item => <WallPost item={item} key={item.id}/>)}
+        </main>
 
       </div>
     );
