@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 import Login from './Login';
 import Home from './Home';
-import Wall from './Wall';
+import Wall from './Wall.jsx';
 
 export default class App extends Component {
   render() {
