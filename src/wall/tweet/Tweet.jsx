@@ -1,9 +1,9 @@
-import './Post.scss'
+import './Tweet.scss'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as API from './api';
+import * as API from '../../api';
 
-export class Post extends Component {
+export class Tweet extends Component {
   constructor({ match }) {
     super();
 

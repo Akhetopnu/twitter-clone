@@ -1,7 +1,7 @@
 import './Wall.scss';
-import * as API from './api';
+import * as API from '../api';
 import React, { Component } from 'react';
-import WallPost from './WallPost.jsx';
+import { TweetPreview } from './tweet-preview/TweetPreview.jsx';
 import { BrowserRouter as Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -47,7 +47,7 @@ export class Wall extends Component {
           { this.state.list
               .filter(this.isMatch, this)
               .map((item, i) =>
-                <WallPost item={item} key={i} />
+                <TweetPreview item={item} key={i} />
               )
           }
         </main>

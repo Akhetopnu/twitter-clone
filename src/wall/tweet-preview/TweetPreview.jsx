@@ -1,8 +1,8 @@
-import './WallPost.scss';
+import './TweetPreview.scss';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-export default class WallPost extends Component {
+export class TweetPreview extends Component {
   render() {
     const { userId, title, id } = this.props.item;
 
