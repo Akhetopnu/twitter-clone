@@ -15,8 +15,7 @@ export default class App extends Component {
           <Switch>
             <Route exact path='/login' component={Login} />
             <Route exact path='/logout' component={Logout} />
-            <Route exact path='/wall' component={Wall} />
-            <Route path='/wall/:id' component={Tweet} />
+            <Route exact path='/wall/:id?' component={Wall} />
             <Redirect to='/wall' />
           </Switch>
         </div>
