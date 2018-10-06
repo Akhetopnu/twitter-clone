@@ -11,15 +11,6 @@ export default class App extends Component {
     return (
       <Router className='fill'>
         <div className='fill'>
-          <div>
-            <ul>
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/login'>Login</Link></li>
-              <li><Link to='/wall'>Wall</Link></li>
-            </ul>
-          </div>
-          <hr />
-
           <Switch>
             <Route exact path='/login' component={Login} />
             <Route exact path='/wall' component={Wall} />
