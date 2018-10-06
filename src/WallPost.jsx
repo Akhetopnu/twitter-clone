@@ -1,5 +1,6 @@
 import './WallPost.scss';
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export default class WallPost extends Component {
   render() {
@@ -7,12 +8,12 @@ export default class WallPost extends Component {
 
     return userId && title && id
       ?
-        <a className='wall-content-post' href={'/posts/' + id}>
+        <Link className='wall-content-post' to={'/wall/' + id}>
           <div className='wall-content-post-inner'>
-            <h3>{userId ? 'UserId: ' + userId : ''}</h3>
+            <h2>{userId ? 'UserId: ' + userId : ''}</h2>
             <span>{title || ''}</span>
           </div>
-        </a>
+        </Link>
       :
         <div className='wall-content-post hidden'></div>
   }
