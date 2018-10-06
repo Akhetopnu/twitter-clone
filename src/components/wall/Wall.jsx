@@ -1,24 +1,32 @@
 import './Wall.scss';
 import * as API from '../../services/api';
+import * as auth from '../../services/auth';
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { TweetPreview } from './tweet-preview/TweetPreview.jsx';
-import { BrowserRouter as Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Tweet } from './tweet/Tweet.jsx';
 
 export class Wall extends Component {
-  constructor() {
+  constructor({ match }) {
     super();
 
     this.state = {
       list: [],
       search: '',
+      post_id: match.params.id,
     };
   }
 
   componentDidMount() {
+    this.is_mounted = true;
     API.fetch_all()
       .then(list => {
+        if (!this.is_mounted) {
+          return;
+        }
+
         if (list.length % 3) {
           list.push(
             ...Array.from({
@@ -31,7 +39,19 @@ export class Wall extends Component {
       });
   }
 
+  componentWillUnmount() {
+    this.is_mounted = false;
+  }
+
   render() {
+    if (!auth.isAuthenticated) {
+      return <Redirect to='/login' />
+    }
+
+    if (this.state.post_id) {
+      return <Tweet id={this.state.post_id} />
+    }
+
     return (
       <div className='wall'>
 
@@ -51,8 +71,16 @@ export class Wall extends Component {
               )
           }
         </main>
+
       </div>
     );
+  }
+  componentWillReceiveProps({ match: { params: { id } } }) {
+    if (id) {
+      this.setState({
+        post_id: id,
+      });
+    }
   }
 
   isMatch({ title, body }) {
@@ -71,9 +99,3 @@ export class Wall extends Component {
     });
   }
 }
-
-export const WallContainer = ({ match }) => (
-  <div>
-    <Route exact path={match.url} component={Wall} />
-  </div>
-);
