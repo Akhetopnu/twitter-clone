@@ -12,7 +12,6 @@
 
 .tweet-preview {
   animation: 0.2s ease-in tweet;
-  animation-direction: forwards;
   border: 1px solid black;
   color: black;
   margin-bottom: 20px;
@@ -27,6 +26,10 @@
     &:hover {
       background: whitesmoke;
     }
+  }
+
+  &.--hidden {
+    display: none;
   }
 
   &.hidden {
