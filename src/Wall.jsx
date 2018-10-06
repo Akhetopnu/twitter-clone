@@ -12,6 +12,7 @@ export class Wall extends Component {
 
     this.state = {
       list: [],
+      search: '',
     };
   }
 
@@ -31,22 +32,46 @@ export class Wall extends Component {
   }
 
   render() {
+    const { isMatch } = this;
+    console.log('rendering...');
     return (
       <div className='wall'>
 
         <header className='wall-header'>
           <a className='wall-header-button-logout' type='button' href='/logout'>Logout</a>
           <div className='wall-header-search'>
-            <i>asd</i>
-            <input type='text' placeholder='Search' />
+            <i>Mag. glass</i>
+            <input type='text' placeholder='Search' onInput={this.search.bind(this)}/>
           </div>
         </header>
 
         <main className='wall-content'>
-          { this.state.list.map((item, i) => <WallPost item={item} key={i}/>) }
+          { this.state.list
+            .filter(this.isMatch, this)
+            .map((item, i) =>
+              <WallPost
+                item={item}
+                key={i}
+              />)
+          }
         </main>
       </div>
     );
+  }
+
+  isMatch(item) {
+    const { search } = this.state;
+
+    return !search || (
+      !!item.title && item.title.includes(search) ||
+      !!item.body && item.body.includes(search)
+    );
+  }
+
+  search(event) {
+    this.setState({
+      search: event.target.value,
+    });
   }
 }
 
