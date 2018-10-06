@@ -15,28 +15,66 @@ export class Wall extends Component {
     this.state = {
       list: [],
       search: '',
+      post_list: [],
       post_id: match.params.id,
+      post_current: 0,
+      post_count: 0,
     };
+    this.is_streaming = false;
+    this.is_mounted = true;
+  }
+
+  get list() {
+    return [
+      ...this.state.post_list,
+      {},
+    ].map(item => ({
+      ...item,
+      hidden: !this.isMatch(item),
+    }));
+  }
+
+  async stream() {
+    const post_count = await API.fetch_count();
+    this.setState({
+      post_count,
+      post_current: post_count,
+    });
+
+    this.stream_tick();
+  }
+
+  stream_finish() {
+    console.info('No more posts available.');
+  }
+
+  async stream_tick() {
+    if (this.state.post_current === 0) {
+      return this.stream_finish();
+    }
+
+    const post = await API.fetch_by_id(this.state.post_current);
+    if (!Object.keys(post).length) {
+      return this.stream_finish();
+    }
+
+    this.setState({
+      post_list: [...this.state.post_list, post],
+      post_current: this.state.post_current - 1,
+    });
+
+    if (!this.is_mounted || !this.is_streaming) {
+      return;
+    }
+
+    setTimeout(() => {
+      this.stream_tick();
+    }, 2e3)
   }
 
   componentDidMount() {
     this.is_mounted = true;
-    API.fetch_all()
-      .then(list => {
-        if (!this.is_mounted) {
-          return;
-        }
-
-        if (list.length % 3) {
-          list.push(
-            ...Array.from({
-              length: 3 - (list.length % 3),
-            }).map(() => ({})),
-          );
-        }
-
-        this.setState({ list });
-      });
+    this.stream();
   }
 
   componentWillUnmount() {
@@ -49,9 +87,11 @@ export class Wall extends Component {
     }
 
     if (this.state.post_id) {
+      this.is_streaming = false;
       return <Tweet id={this.state.post_id} />
     }
 
+    this.is_streaming = true;
     return (
       <div className='wall'>
 
@@ -64,17 +104,16 @@ export class Wall extends Component {
         </header>
 
         <main className='wall-content'>
-          { this.state.list
-              .filter(this.isMatch, this)
-              .map((item, i) =>
-                <TweetPreview item={item} key={i} />
-              )
+          { this.list.map((item, i) =>
+              <TweetPreview item={item} key={i} />
+            )
           }
         </main>
 
       </div>
     );
   }
+
   componentWillReceiveProps({ match: { params: { id } } }) {
     if (id) {
       this.setState({
