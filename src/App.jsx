@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 import Login from './Login';
 import Home from './Home';
-import Wall from './Wall.jsx';
+import { Wall } from './Wall.jsx';
+import { Post } from './Post.jsx';
 
 export default class App extends Component {
   render() {
@@ -21,8 +22,9 @@ export default class App extends Component {
           <hr />
 
           <Route exact path='/' component={Home} />
-          <Route path='/login' component={Login} />
-          <Route path='/Wall' component={Wall} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/wall' component={Wall} />
+          <Route path='/wall/:id' component={Post} />
         </div>
       </Router>
     );
