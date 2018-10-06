@@ -1,0 +1,52 @@
+@keyframes tweet {
+  from {
+    opacity: 0;
+    transform: translateY(13px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.tweet-preview {
+  animation: 0.2s ease-in tweet;
+  animation-direction: forwards;
+  border: 1px solid black;
+  color: black;
+  margin-bottom: 20px;
+  text-decoration: none;
+  text-align: center;
+  width: 32%;
+  height: 150px;
+
+  &:not(.hidden) {
+    cursor: pointer;
+
+    &:hover {
+      background: whitesmoke;
+    }
+  }
+
+  &.hidden {
+    border: none;
+  }
+}
+
+// DESKTOP
+@media screen and (min-width: 750px) {
+  .wall-content-post {
+    &:nth-child(1), &:nth-child(2), &:nth-child(3) {
+      padding-top: 20px;
+    }
+
+    &:nth-last-child(1), &:nth-last-child(2), &:nth-last-child(3) {
+      padding-bottom: 20px;
+    }
+
+  }
+}
+
+// TABLET
+// MOBILE

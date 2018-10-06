@@ -32,8 +32,15 @@ export class Tweet extends Component {
         </header>
 
       {this.state.post
-        ? <p>Title: {this.state.post.title}</p>
-        : <h2>Loading...</h2>
+        ?
+          <div>
+            <p><b>UserId:</b> userId{this.state.post.userId}</p>
+            <p><b>Id:</b> {this.state.post.id}</p>
+            <p><b>Title:</b> {this.state.post.title}</p>
+            <p><b>Body:</b> {this.state.post.body}</p>
+          </div>
+        :
+          <h2>Loading...</h2>
       }
       </div>
     );

@@ -55,13 +55,13 @@ export class Wall extends Component {
     );
   }
 
-  isMatch(item) {
+  isMatch({ title, body }) {
     const { search } = this.state;
 
-    return !search || (
-      (item.title && item.title.includes(search))
+    return !search || (!title && !body) || (
+      (title && title.includes(search))
         ||
-      (item.body && item.body.includes(search))
+      (body && body.includes(search))
     );
   }
 

@@ -8,13 +8,11 @@ export class TweetPreview extends Component {
 
     return userId && title && id
       ?
-        <Link className='wall-content-post' to={'/wall/' + id}>
-          <div className='wall-content-post-inner'>
-            <h2>{userId ? 'UserId: ' + userId : ''}</h2>
-            <span>{title || ''}</span>
-          </div>
+        <Link className='tweet-preview' to={'/wall/' + id}>
+          <h2>{userId ? 'UserId: ' + userId : ''}</h2>
+          <span>{title || ''}</span>
         </Link>
       :
-        <div className='wall-content-post hidden'></div>
+        <div className='tweet-preview hidden'></div>
   }
 }
