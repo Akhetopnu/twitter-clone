@@ -1,10 +1,8 @@
 import './Wall.scss';
 import * as API from './api';
 import React, { Component } from 'react';
-import { BrowserRouter as Route, Link } from 'react-router-dom';
 import WallPost from './WallPost.jsx';
-import { Post } from './Post.jsx';
-
+import { BrowserRouter as Route } from 'react-router-dom';
 
 export class Wall extends Component {
   constructor() {
@@ -32,8 +30,6 @@ export class Wall extends Component {
   }
 
   render() {
-    const { isMatch } = this;
-    console.log('rendering...');
     return (
       <div className='wall'>
 
@@ -47,12 +43,10 @@ export class Wall extends Component {
 
         <main className='wall-content'>
           { this.state.list
-            .filter(this.isMatch, this)
-            .map((item, i) =>
-              <WallPost
-                item={item}
-                key={i}
-              />)
+              .filter(this.isMatch, this)
+              .map((item, i) =>
+                <WallPost item={item} key={i} />
+              )
           }
         </main>
       </div>
@@ -63,8 +57,9 @@ export class Wall extends Component {
     const { search } = this.state;
 
     return !search || (
-      !!item.title && item.title.includes(search) ||
-      !!item.body && item.body.includes(search)
+      (item.title && item.title.includes(search))
+        ||
+      (item.body && item.body.includes(search))
     );
   }
 
