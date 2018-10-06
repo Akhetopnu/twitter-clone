@@ -19,10 +19,6 @@ export class PopupError extends Component {
     this.on_close = on_close;
   }
 
-  close() {
-    this.on_close();
-  };
-
   render() {
     return (
       <Dialog
@@ -43,7 +39,7 @@ export class PopupError extends Component {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={this.handleClose} color="primary" autoFocus>
+          <Button onClick={this.on_close} color="primary" autoFocus>
             Got it!
           </Button>
         </DialogActions>
