@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 // import logo from './logo.svg';
 import './App.css';
 import { Login } from './login/Login';
@@ -20,10 +20,12 @@ export default class App extends Component {
           </div>
           <hr />
 
-          <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/wall' component={Wall} />
-          <Route path='/wall/:id' component={Tweet} />
+          <Switch>
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/wall' component={Wall} />
+            <Route path='/wall/:id' component={Tweet} />
+            <Redirect to='/wall' />
+          </Switch>
         </div>
       </Router>
     );
