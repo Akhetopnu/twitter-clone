@@ -1,5 +1,5 @@
 export function user () {
-  const str = sessionStorage.getItem('user`');
+  const str = sessionStorage.getItem('user');
   if (!str) {
     console.warn('You are a guest.');
     return;
