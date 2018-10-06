@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // import logo from './logo.svg';
 import './App.css';
 import { Login } from './login/Login';
-import Home from './Home';
 import { Wall } from './wall/Wall.jsx';
 import { Tweet } from './wall/tweet/Tweet.jsx';
 
