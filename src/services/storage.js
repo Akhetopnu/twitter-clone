@@ -20,3 +20,6 @@ export function set (user) {
 
   sessionStorage.setItem('user', JSON.stringify(user));
 }
+export function wipe () {
+  sessionStorage.clear();
+}

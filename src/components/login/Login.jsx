@@ -15,4 +15,8 @@ export class Login extends Component {
       </div>
     );
   }
+
+  validate() {
+    console.log('validating...');
+  }
 }

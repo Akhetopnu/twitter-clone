@@ -1,5 +1,5 @@
 import './Wall.scss';
-import * as API from '../api';
+import * as API from '../../services/api';
 import React, { Component } from 'react';
 import { TweetPreview } from './tweet-preview/TweetPreview.jsx';
 import { BrowserRouter as Route } from 'react-router-dom';
