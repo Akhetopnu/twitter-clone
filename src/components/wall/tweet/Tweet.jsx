@@ -11,27 +11,51 @@ export class Tweet extends Component {
     this.state = {
       id,
       post: undefined,
-      exists: false,
+      is_loading: true,
     }
   }
   async fetch() {
     const post = await API.fetch_by_id(this.state.id)
       .catch(console.error);
-    if (!post) {
-      this.setState({
-        exists: false,
-      });
-    }
 
-    this.setState({ post });
+    this.setState({
+      post,
+      is_loading: false,
+    });
   }
 
   componentWillMount() {
     this.fetch();
   }
 
+  message404() {
+    return `Sorry, we could not find post with an id of ${this.state.id}.`;
+  }
+
   render() {
     const { post } = this.state;
+    let view;
+    if (this.state.is_loading) {
+      view = <h2>Loading...</h2>;
+    }
+    else if (!this.state.post) {
+      const message =
+        `Sorry, we could not find post with an id of ${this.state.id}.`;
+      view =
+        <PopupError
+          title='404 Not found'
+          message={message}
+        />;
+    } else {
+      view =
+        <div>
+          <p><b>UserId:</b> userId{post.userId}</p>
+          <p><b>Id:</b> {post.id}</p>
+          <p><b>Title:</b> {post.title}</p>
+          <p><b>Body:</b> {post.body}</p>
+        </div>
+    }
+
     return (
       <div className='post'>
         <header className='post-header'>
@@ -40,22 +64,8 @@ export class Tweet extends Component {
           </Link>
         </header>
 
-      {!this.exists
-        ? <PopupError
-            title='404 Not found'
-            message='Sorry, we could not find post with an id of 0.'
-          />
-        : this.state.post
-          ?
-            <div>
-              <p><b>UserId:</b> userId{post.userId}</p>
-              <p><b>Id:</b> {post.id}</p>
-              <p><b>Title:</b> {post.title}</p>
-              <p><b>Body:</b> {post.body}</p>
-            </div>
-          :
-            <h2>Loading...</h2>
-      }
+        {view}
+
       </div>
     );
   }
