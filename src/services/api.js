@@ -1,29 +1,11 @@
-export const URL = 'https://jsonplaceholder.typicode.com';
+const URL = 'https://jsonplaceholder.typicode.com';
 
-// export const fetch_all = () => {
-//   return Promise.resolve(
-//     Array.from({ length: 5 }).map((_, i) => ({
-//       userId: i % 2,
-//       id: i,
-//       title: Math.random().toString().repeat(5).slice(0, 40),
-//       body: Math.random().toString().repeat(5).slice(0, 100),
-//     }))
-//   );
-// }
+const get = (id = '') =>
+  fetch(URL + '/posts/' + id)
+    .then(response => response.json())
+    .catch(() => undefined);
 
-export const fetch_all = () => {
-  if (localStorage.list) {
-    return Promise.resolve(JSON.parse(localStorage.list));
+export const fetch_by_id = get;
 
-  }
-  return fetch(URL + '/posts')
-    .then(x => x.json())
-    .then(list => {
-      localStorage.list = JSON.stringify(list);
-      return list;
-    });
-}
-
-export const fetch_by_id = post_id =>
-  fetch(URL + '/posts/' + post_id)
-    .then(x => x.json());
+export const fetch_count = () =>
+  get().then(list => list.length)
