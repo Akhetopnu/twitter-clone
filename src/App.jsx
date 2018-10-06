@@ -5,7 +5,6 @@ import './App.css';
 import { Login } from './components/login/Login';
 import { Logout } from './components/logout/Logout';
 import { Wall } from './components/wall/Wall.jsx';
-import { Tweet } from './components/wall/tweet/Tweet.jsx';
 
 export default class App extends Component {
   render() {
