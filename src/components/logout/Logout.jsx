@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import * as auth from '../../services/auth';
+import { Redirect } from 'react-router-dom';
 
-export class Logout extends Component {
-  componentMounted() {
-    // do stuff...
-  }
+export const Logout = () => {
+  auth.logout();
 
-
-  render() {
-    return <div></div>
-  }
-}
+  return <Redirect to='/login' />
+};
