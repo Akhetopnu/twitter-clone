@@ -10,8 +10,8 @@ import { Tweet } from './wall/tweet/Tweet.jsx';
 export default class App extends Component {
   render() {
     return (
-      <Router>
-        <div>
+      <Router className='fill'>
+        <div className='fill'>
           <div>
             <ul>
               <li><Link to='/'>Home</Link></li>
