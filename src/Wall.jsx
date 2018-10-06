@@ -1,9 +1,12 @@
 import './Wall.scss';
 import * as API from './api';
 import React, { Component } from 'react';
+import { BrowserRouter as Route, Link } from 'react-router-dom';
 import WallPost from './WallPost.jsx';
+import { Post } from './Post.jsx';
 
-export default class Wall extends Component {
+
+export class Wall extends Component {
   constructor() {
     super();
 
@@ -16,7 +19,6 @@ export default class Wall extends Component {
     API.fetch_all()
       .then(list => {
         if (list.length % 3) {
-          console.log('dodajemy');
           list.push(
             ...Array.from({
               length: 3 - (list.length % 3),
@@ -41,11 +43,15 @@ export default class Wall extends Component {
         </header>
 
         <main className='wall-content'>
-          {this.state.list.map((item, i) => <WallPost item={item} key={i}/>)}
+          { this.state.list.map((item, i) => <WallPost item={item} key={i}/>) }
         </main>
-
       </div>
     );
   }
 }
 
+export const WallContainer = ({ match }) => (
+  <div>
+    <Route exact path={match.url} component={Wall} />
+  </div>
+);
