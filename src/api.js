@@ -24,6 +24,6 @@ export const fetch_all = () => {
     });
 }
 
-// export const fetch = post_id =>
-//   fetch(URL + '/' + post_id)
-//     .then(x => x.json());
+export const fetch_by_id = post_id =>
+  fetch(URL + '/posts/' + post_id)
+    .then(x => x.json());
