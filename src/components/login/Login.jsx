@@ -48,7 +48,7 @@ export class Login extends Component {
               name='password'
               minLength='8'
               title={instruction}
-              placeholder='no secrets before me you know'
+              placeholder='&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;'
               onChange={this.update}
               required
             />
