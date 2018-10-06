@@ -60,8 +60,8 @@
     text-align: center;
     width: calc(25vw - 2 * 10px - 10px);
     padding: 10px;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    // border-left: 1px solid black;
+    // border-right: 1px solid black;
 
     cursor: pointer;
     &:hover > &-inner {
@@ -81,13 +81,13 @@
     &:nth-child(2),
     &:nth-child(3) {
       padding-top: 20px;
-      border-top: 1px solid black;
+      // border-top: 1px solid black;
     }
 
     &:nth-last-child(1),
     &:nth-last-child(2),
     &:nth-last-child(3) {
-      border-bottom: 1px solid black;
+      // border-bottom: 1px solid black;
       padding-bottom: 20px;
     }
 
