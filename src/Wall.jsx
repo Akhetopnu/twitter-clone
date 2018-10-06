@@ -3,6 +3,8 @@ import * as API from './api';
 import React, { Component } from 'react';
 import WallPost from './WallPost.jsx';
 import { BrowserRouter as Route } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export class Wall extends Component {
   constructor() {
@@ -36,7 +38,7 @@ export class Wall extends Component {
         <header className='wall-header'>
           <a className='wall-header-button-logout' type='button' href='/logout'>Logout</a>
           <div className='wall-header-search'>
-            <i>Mag. glass</i>
+            <FontAwesomeIcon className='wall-header-search-icon' icon={faSearch} />
             <input type='text' placeholder='Search' onInput={this.search.bind(this)}/>
           </div>
         </header>

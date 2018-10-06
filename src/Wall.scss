@@ -15,12 +15,34 @@
 
   &-button-logout {
     flex: 0.3;
-    appearance: button;
+    text-decoration: none;
+    text-align: center;
+    height: 100%;
+    line-height: 30px;
+    width: calc(25vw - 2 * 10px - 10px);
+    border: 1px solid darkgrey;
   }
 
   &-search {
     flex: 0.6;
-    background: red;
+    display: flex;
+    border-radius: 20px;
+    border: 1px solid darkgrey;
+    overflow: hidden;
+    padding: 5px;
+
+    &-icon {
+      margin: 0px 5px;
+    }
+
+    > input {
+      flex: 1;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 }
 
@@ -28,7 +50,7 @@
   flex: 1;
 
   display: flex;
-  justify-content: stretch;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 30px;
 
@@ -36,10 +58,8 @@
     color: black;
     text-decoration: none;
     text-align: center;
-    flex: 1;
-    min-width: 28%;
+    width: calc(25vw - 2 * 10px - 10px);
     padding: 10px;
-    margin: 0px 10px;
     border-left: 1px solid black;
     border-right: 1px solid black;
 
@@ -55,7 +75,7 @@
   }
 }
 
-@media screen and (max-width: 1524px) {
+@media screen and (min-width: 750px) {
   .wall-content-post {
     &:nth-child(1),
     &:nth-child(2),
@@ -68,6 +88,7 @@
     &:nth-last-child(2),
     &:nth-last-child(3) {
       border-bottom: 1px solid black;
+      padding-bottom: 20px;
     }
 
     &.hidden {
