@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import * as API from '../../../services/api';
 
 export class Tweet extends Component {
-  constructor({ match }) {
+  constructor({ id }) {
     super();
 
     this.state = {
-      id: match.params.id,
+      id,
       post: undefined,
     }
   }
@@ -26,7 +26,7 @@ export class Tweet extends Component {
     return (
       <div className='post'>
         <header className='post-header'>
-          <Link to='.' className='post-header-back'>
+          <Link to='..' className='post-header-back'>
             <button>Go back</button>
           </Link>
         </header>
