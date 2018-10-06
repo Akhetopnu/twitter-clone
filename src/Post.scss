@@ -1,0 +1,26 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  padding: 20px;
+}
+
+.post-header {
+  display: flex;
+
+  > a, button {
+    display: block;
+  }
+
+}
+
+.post-header-back {
+  display: flex;
+  flex: 1;
+
+  > button {
+    width: 100%;
+    background: white;
+  }
+}
