@@ -1,3 +1,4 @@
+import './PopupError.scss'
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -6,23 +7,26 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export class PopupError extends Component {
-  state = {
-    open: true,
-  };
+import { Link } from 'react-router-dom';
 
-  constructor({ title, message, on_close } = {}) {
+export class PopupError extends Component {
+  constructor({ title, message, is_open, on_click } = {}) {
     super();
 
     this.title = title;
     this.message = message;
-    this.on_close = on_close;
+    this.on_click = on_click || (() => {
+      this.setState({
+        is_open: false,
+      });
+    });
+    this.is_open = !on_click;
   }
 
   render() {
     return (
       <Dialog
-        open={this.state.open}
+        open={this.is_open}
         onClose={this.handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -39,8 +43,10 @@ export class PopupError extends Component {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={this.on_close} color="primary" autoFocus>
-            Got it!
+          <Button color="primary" autoFocus onClick={this.on_click}>
+            <Link className='popup-error-link' to='..'>
+              Got it!
+            </Link>
           </Button>
         </DialogActions>
 
