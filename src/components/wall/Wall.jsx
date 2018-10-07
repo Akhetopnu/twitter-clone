@@ -3,6 +3,7 @@ import * as auth from '../../services/auth';
 import * as actions from '../../store/actions';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { PopupError } from '../popup-error/PopupError.jsx';
 import { TweetPreview } from './tweet-preview/TweetPreview.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -103,6 +104,15 @@ class $Wall extends Component {
             )
           }
         </main>
+
+        {Number.isNaN(this.props.posts.next) &&
+          <PopupError
+            title='Network problem'
+            message='There seems to be a connectivity issue. Please try again later.'
+            on_click={() => { console.log('sup'); }}
+          />
+
+        }
 
       </div>
     );
