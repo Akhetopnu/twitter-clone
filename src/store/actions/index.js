@@ -1,5 +1,4 @@
 import * as API from '../../services/api';
-import * as types from './types';
 import * as creators from './creators';
 
 export * from './types';
