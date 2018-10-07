@@ -111,7 +111,6 @@ class $Wall extends Component {
             message='There seems to be a connectivity issue. Please try again later.'
             on_click={() => { console.log('sup'); }}
           />
-
         }
 
       </div>
