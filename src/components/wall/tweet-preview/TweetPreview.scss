@@ -17,8 +17,20 @@
   margin-bottom: 20px;
   text-decoration: none;
   text-align: center;
-  width: 32%;
   height: 150px;
+
+  // mobile
+  width: 100%;
+
+  // tablet
+  @media screen and (min-width: 640px) {
+    width: 48%
+  }
+
+  // desktop
+  @media screen and (min-width: 1024px) {
+    width: 32%
+  }
 
   &:not(.hidden) {
     cursor: pointer;
@@ -36,20 +48,3 @@
     border: none;
   }
 }
-
-// DESKTOP
-@media screen and (min-width: 750px) {
-  .wall-content-post {
-    &:nth-child(1), &:nth-child(2), &:nth-child(3) {
-      padding-top: 20px;
-    }
-
-    &:nth-last-child(1), &:nth-last-child(2), &:nth-last-child(3) {
-      padding-bottom: 20px;
-    }
-
-  }
-}
-
-// TABLET
-// MOBILE
