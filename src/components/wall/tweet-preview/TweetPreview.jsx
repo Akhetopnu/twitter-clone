@@ -12,8 +12,8 @@ export class TweetPreview extends Component {
 
     return (
       <Link className={klass} to={'/wall/' + id}>
-        <h2>{userId ? 'UserId: ' + userId : ''}</h2>
-        <span>{title || ''}</span>
+        <h2>UserId: {userId}</h2>
+        <span>{title}</span>
       </Link>
     );
   }
