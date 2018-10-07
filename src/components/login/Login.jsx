@@ -3,7 +3,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import * as auth from '../../services/auth';
 
-const instruction = 'Password must be at least 8 characters long, contains at least 1 small letter, one capital letter and 1 number';
+// to make the lines short
+const instruction = [
+  'Password must be at least 8 characters long',
+  ', contains at least 1 small letter',
+  ', one capital letter and 1 number',
+].join('');
 
 export class Login extends Component {
   constructor({ history }) {
@@ -17,7 +22,6 @@ export class Login extends Component {
       password: '',
     };
   }
-
 
   render() {
     if (auth.isAuthenticated) {
