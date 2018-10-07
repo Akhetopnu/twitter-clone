@@ -8,4 +8,9 @@ const get = (id = '') =>
 export const fetch_by_id = get;
 
 export const fetch_count = () =>
-  get().then(list => list.length)
+  get()
+    .then(list =>
+      list
+        ? list.length
+        : NaN
+    );
