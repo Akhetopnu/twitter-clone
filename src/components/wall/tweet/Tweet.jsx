@@ -7,7 +7,7 @@ import * as API from '../../../services/api';
 
 export class Tweet extends Component {
   static propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.number.isRequired,
   }
 
   constructor({ id }) {
