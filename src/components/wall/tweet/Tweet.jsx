@@ -13,6 +13,7 @@ export class Tweet extends Component {
       post: undefined,
       is_loading: true,
     }
+    this.fetch();
   }
   async fetch() {
     const post = await API.fetch_by_id(this.state.id)
@@ -24,10 +25,6 @@ export class Tweet extends Component {
     });
   }
 
-  componentWillMount() {
-    this.fetch();
-  }
-
   message404() {
     return `Sorry, we could not find post with an id of ${this.state.id}.`;
   }
@@ -35,16 +32,17 @@ export class Tweet extends Component {
   render() {
     const { post } = this.state;
     let view;
+
     if (this.state.is_loading) {
-      view = <h2>Loading...</h2>;
-    }
-    else if (!this.state.post) {
-      const message =
-        `Sorry, we could not find post with an id of ${this.state.id}.`;
+      view =
+        <h2>Loading...</h2>;
+    } else if (!post || (post && !Object.keys(post).length)) {
       view =
         <PopupError
           title='404 Not found'
-          message={message}
+          message={
+          'Sorry, we could not find post with an id of ' + this.state.id + '.'
+          }
         />;
     } else {
       view =
