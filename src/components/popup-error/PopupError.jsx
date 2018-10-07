@@ -1,5 +1,6 @@
 import './PopupError.scss'
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,27 +8,41 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { Link } from 'react-router-dom';
-
 export class PopupError extends Component {
-  constructor({ title, message, is_open, on_click } = {}) {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+    on_click: PropTypes.func,
+  }
+  static defaultProps = {
+    is_open: true,
+  }
+
+  state = {
+    is_open: true,
+  }
+
+  constructor({ title, message, on_click, is_open } = {}) {
     super();
 
     this.title = title;
     this.message = message;
-    this.on_click = on_click || (() => {
-      this.setState({
-        is_open: false,
-      });
+    this.close = this.close.bind(this);
+    this.on_click = on_click;
+    this.is_open = is_open;
+  }
+
+  close() {
+    this.on_click && this.on_click();
+    this.setState({
+      is_open: false,
     });
-    this.is_open = !on_click;
   }
 
   render() {
     return (
       <Dialog
-        open={this.is_open}
-        onClose={this.handleClose}
+        open={this.state.is_open}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -43,10 +58,8 @@ export class PopupError extends Component {
         </DialogContent>
 
         <DialogActions>
-          <Button color="primary" autoFocus onClick={this.on_click}>
-            <Link className='popup-error-link' to='..'>
-              Got it!
-            </Link>
+          <Button color="primary" autoFocus onClick={this.close}>
+            Got it!
           </Button>
         </DialogActions>
 
