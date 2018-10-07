@@ -23,7 +23,7 @@ class $Wall extends Component {
 
     this.state = {
       search: '',
-      post_id: match.params.id,
+      post_id: +match.params.id,
     };
 
     this.is_streaming = false;
@@ -50,7 +50,7 @@ class $Wall extends Component {
     }
 
     this.setState({
-      post_id: match.params.id,
+      post_id: +match.params.id,
     });
   }
 

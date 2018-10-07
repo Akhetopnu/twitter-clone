@@ -1,10 +1,15 @@
 import './Tweet.scss'
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { PopupError } from '../../popup-error/PopupError.jsx';
 import * as API from '../../../services/api';
 
 export class Tweet extends Component {
+  static propTypes = {
+    id: PropTypes.number,
+  }
+
   constructor({ id }) {
     super();
 
