@@ -61,10 +61,10 @@ export class Login extends Component {
     );
   }
 
-  validate(login, password) {
+  validate(login = '', password = '') {
     return (
-      login.length >= 0 &&
-      password.length >= 8 &&
+      !!login && login.length >= 5 &&
+      !!password && password.length >= 8 &&
       [/\d/, /[a-z]/, /[A-Z]/]
         .every(re => re.test(password))
     );
