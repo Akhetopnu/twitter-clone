@@ -1,15 +1,13 @@
 export function user () {
   const str = sessionStorage.getItem('user');
   if (!str) {
-    console.warn('You are a guest.');
     return;
   }
 
   try {
     return JSON.parse(str);
   } catch (error) {
-    console.error('Failed to parse sessionStorage value.');
-    return;
+    return console.warn('Failed to parse sessionStorage value.');
   }
 }
 
