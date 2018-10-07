@@ -24,8 +24,6 @@ export class Login extends Component {
       return <Redirect to='/wall' />
     }
 
-    const { login, password } = this.state;
-
     return (
       <div className='login-container'>
         <form className='login' onSubmit={this.submit} method=''>
@@ -59,8 +57,13 @@ export class Login extends Component {
     );
   }
 
-  validate() {
-    console.log('validating...');
+  validate(login, password) {
+    return (
+      login.length >= 0 &&
+      password.length >= 8 &&
+      [/\d/, /[a-z]/, /[A-Z]/]
+        .every(re => re.test(password))
+    );
   }
 
   update(event) {
@@ -74,11 +77,7 @@ export class Login extends Component {
     const form = event.target;
     const login = form.login.value;
     const password = form.password.value;
-
-    // for password
-    const validators = [/\d/, /[a-z]/, /[A-Z]/];
-    const is_valid = validators.every(re => re.test(password));
-    if (!is_valid) {
+    if (!this.validate(login, password)) {
       return password.setCustomValidity(instruction);
     }
 
